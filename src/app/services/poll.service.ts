@@ -28,23 +28,25 @@ export class PollService implements OnDestroy {
   createNewPollService(pollData: CreatePoll): Observable<CreatePoll> {
     return this.http.post(`${this.url}/polls/createPoll`, pollData)
       .map(res => res.json())
-      .catch(err => err)
+      .catch(err => Observable.throw(err));
   }
 
   myPolls(userid: string): Observable<CreatePoll[]> {
-    return this.http.get(`${this.url}/${userid}/polls/mypolls`)
+    return this.http.get(`${this.url}/polls/${userid}/mypolls`)
       .map(res => res.json())
-      .catch(err => err)
+      .catch(err => Observable.throw(err))
   }
 
   getAll(): Observable<CreatePoll[]> {
     return this.http.get(`${this.url}/polls/getAll`)
       .map(res => res.json())
+      .catch(err => Observable.throw(err));
   }
 
   getPoll(pollId: string): Observable<CreatePoll> {
     return this.http.get(`${this.url}/polls/${pollId}`)
       .map(res => res.json())
+      .catch(err => Observable.throw(err))
   }
 
   addVote(pollId, optionId): Observable<CreatePoll> {

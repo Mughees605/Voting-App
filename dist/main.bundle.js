@@ -341,7 +341,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "li{\r\n    cursor: pointer\r\n}", ""]);
 
 // exports
 
@@ -595,7 +595,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "li{\r\n    cursor: pointer\r\n}", ""]);
 
 // exports
 
@@ -668,7 +668,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".poll-option{\r\n    margin-top: 25px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -681,7 +681,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/poll/poll-detail/poll-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n  <h2 class=\"text-center\">POLLS Details</h2>\r\n  <div class=\"row\" *ngIf=\"poll$ | async as poll; else loading\">\r\n    <div class=\"col-md-4\">\r\n      <h1>\r\n        {{poll.title}}\r\n      </h1>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <div *ngFor='let option of poll.options'>\r\n        <input type=\"radio\" name=\"{{option.name}}\" id=\"{{option._id}}\" (click)='selectedOption(option , poll._id)'/> {{option.name}}\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-4\">\r\n      <h3 class=\"text-center\">\r\n        No Comments Yet\r\n      </h3>\r\n    </div>\r\n  </div>\r\n</div>\r\n<ng-template #loading>Loading...</ng-template>\r\n"
+module.exports = "<div class=\"container\">\r\n  <h2 class=\"text-center\">POLLS Details</h2>\r\n  <div class=\"row\" *ngIf=\"poll$ | async as poll; else loading\">\r\n    <div class=\"col-md-4 title\">\r\n      <h1>\r\n        {{poll.title}}\r\n      </h1>\r\n    </div>\r\n    <div class=\"col-md-4 poll-option\">\r\n      <ul class=\"list-group\" *ngIf=\"poll.options\">\r\n        <li *ngFor='let option of poll.options' class=\"list-group-item\">\r\n          <input type=\"radio\" name=\"{{option.name}}\" id=\"{{option._id}}\" (click)='selectedOption(option , poll._id)'/> {{option.name}}\r\n        </li>\r\n      </ul>\r\n    </div>\r\n    <div class=\"col-md-4 comments\">\r\n      <h2 class=\"text-center\">\r\n        No Comments Yet\r\n      </h2>\r\n    </div>\r\n  </div>\r\n</div>\r\n<ng-template #loading>Loading...</ng-template>\r\n"
 
 /***/ }),
 
@@ -1297,20 +1297,22 @@ var PollService = /** @class */ (function () {
     PollService.prototype.createNewPollService = function (pollData) {
         return this.http.post(this.url + "/polls/createPoll", pollData)
             .map(function (res) { return res.json(); })
-            .catch(function (err) { return err; });
+            .catch(function (err) { return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err); });
     };
     PollService.prototype.myPolls = function (userid) {
-        return this.http.get(this.url + "/" + userid + "/polls/mypolls")
+        return this.http.get(this.url + "/polls/" + userid + "/mypolls")
             .map(function (res) { return res.json(); })
-            .catch(function (err) { return err; });
+            .catch(function (err) { return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err); });
     };
     PollService.prototype.getAll = function () {
         return this.http.get(this.url + "/polls/getAll")
-            .map(function (res) { return res.json(); });
+            .map(function (res) { return res.json(); })
+            .catch(function (err) { return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err); });
     };
     PollService.prototype.getPoll = function (pollId) {
         return this.http.get(this.url + "/polls/" + pollId)
-            .map(function (res) { return res.json(); });
+            .map(function (res) { return res.json(); })
+            .catch(function (err) { return __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__["Observable"].throw(err); });
     };
     PollService.prototype.addVote = function (pollId, optionId) {
         return this.http.get(this.url + "/polls/" + pollId + "/options/" + optionId + "/vote")
