@@ -35,7 +35,8 @@ export class CreatePollComponent implements OnInit, OnDestroy {
 
   createPoll() {
     this.pollSer.createNewPollService(this.newPoll).subscribe((poll: CreatePoll) => {
-      this.router.navigate(['poll', poll._id, 'posted'])
+      console.log(poll)
+      this.router.navigate(['poll', 'posted', poll._id])
     });
     this.reset()
   }

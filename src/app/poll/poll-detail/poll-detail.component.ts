@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PollService } from '../../services/poll.service';
+import { AlertService } from '../../services/alert.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CreatePoll } from '../../models/newpoll.model';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +17,12 @@ export class PollDetailComponent implements OnInit, OnDestroy {
   pollId: string;
   subcription: ISubscription[] = [];
 
-  constructor(private pollSer: PollService, private routes: ActivatedRoute, private router: Router) { }
+  constructor(
+    private pollSer: PollService,
+    private routes: ActivatedRoute,
+    private router: Router,
+    private alertService: AlertService
+  ) { }
 
   ngOnInit() {
     this.subcription.push(
@@ -32,7 +38,8 @@ export class PollDetailComponent implements OnInit, OnDestroy {
       this.pollSer.addVote(pollId, data._id).subscribe((res) => {
         this.router.navigate(['/poll', 'chart', this.pollId])
       }, (err) => {
-        this.router.navigate(['/poll', 'chart', this.pollId])
+         console.log(err);
+         this.alertService.error(err['message'])
       })
     )
   }

@@ -10,7 +10,7 @@ export class PollPostedComponent implements OnInit, OnDestroy {
 
   pollId: string
   subscription:ISubscription;
-
+  origin:string = window.location.origin;
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {

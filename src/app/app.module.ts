@@ -13,14 +13,18 @@ import { RegisterComponent } from './register/register.component';
 import { PollComponent} from './poll/poll.component';
 import { CreatePollComponent } from './poll/create-poll/create-poll.component';
 import { PollDetailComponent } from './poll/poll-detail/poll-detail.component';
+import { PollchartComponent } from './poll/pollchart/pollchart.component';
+import { MypollComponent } from './poll/mypoll/mypoll.component';
+import { PollListComponent } from './poll/poll-list/poll-list.component';
 import { PollPostedComponent } from './poll/poll-posted/poll-posted.component';
+// Directives
+import { AlertComponent } from './directives/alert.component';
 // services
 import { AuthService } from './services/auth.service';
 import { PollService } from './services/poll.service';
 import { LogininRouteGuard } from './services/auth.guard';
-import { MypollComponent } from './poll/mypoll/mypoll.component';
-import { PollListComponent } from './poll/poll-list/poll-list.component';
-import { PollchartComponent } from './poll/pollchart/pollchart.component';
+import { AlertService } from './services/alert.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +39,7 @@ import { PollchartComponent } from './poll/pollchart/pollchart.component';
     MypollComponent,
     PollListComponent,
     PollchartComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,8 @@ import { PollchartComponent } from './poll/pollchart/pollchart.component';
   providers: [
     AuthService,
     PollService,
-    LogininRouteGuard
+    LogininRouteGuard,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

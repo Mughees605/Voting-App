@@ -30,8 +30,8 @@ const appRouter: Routes = [
       { path: '', component: CreatePollComponent },
       { path: 'my-polls', component: MypollComponent },
       { path: ':id', component: PollDetailComponent },
-      { path: ':chart/:id' , component : PollchartComponent},
-      { path: ':id/posted', component: PollPostedComponent },
+      { path: 'chart/:id' , component : PollchartComponent},
+      { path: 'posted/:id', component: PollPostedComponent },
     ]
   }
 ]
