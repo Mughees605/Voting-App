@@ -36,7 +36,7 @@ module.exports.getPollById = function (req, res) {
 
 module.exports.addVote = function (req, res) {
     let ipAddress = req.headers['x-forwarded-for'] || req.ip;
-
+    console.log(ipAddress,"afsdfasddddddddddddddddddddddd")
     if (req.canVote) {
         let votes = req.options.votes;
         votes.push(ipAddress);
