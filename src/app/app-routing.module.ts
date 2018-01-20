@@ -1,4 +1,4 @@
-   import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PollComponent } from './poll/poll.component';
 import { MypollComponent } from './poll/mypoll/mypoll.component';
@@ -26,12 +26,12 @@ const appRouter: Routes = [
     path: "login", component: LoginComponent
   },
   {
-    path: 'poll', component: PollComponent, canActivate: [LogininRouteGuard], children: [
-      { path: '', component: CreatePollComponent },
-      { path: 'my-polls', component: MypollComponent },
+    path: 'poll', component: PollComponent, children: [
+      { path: '', component: CreatePollComponent, canActivate: [LogininRouteGuard], },
+      { path: 'my-polls', component: MypollComponent, canActivate: [LogininRouteGuard], },
       { path: ':id', component: PollDetailComponent },
       { path: 'chart/:id' , component : PollchartComponent},
-      { path: 'posted/:id', component: PollPostedComponent },
+      { path: 'posted/:id', component: PollPostedComponent, canActivate: [LogininRouteGuard], },
     ]
   }
 ]
